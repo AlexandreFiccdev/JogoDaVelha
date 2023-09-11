@@ -41,6 +41,11 @@ function checkEl(player1, player2){
 }
 
 function checkWinCondtion(){
+    let StatusPartida = {
+        JOGANDO: 0,
+        FINALIZADA: 1,
+    };
+
     let b1 = document.getElementById("block-1");
     let b2 = document.getElementById("block-2");
     let b3 = document.getElementById("block-3");
@@ -50,7 +55,7 @@ function checkWinCondtion(){
     let b7 = document.getElementById("block-7");
     let b8 = document.getElementById("block-8");
     let b9 = document.getElementById("block-9");
-    let statusPartida = 0;
+    let statusPartida = StatusPartida.JOGANDO;
 
     if(b1.childNodes.length > 0 && b2.childNodes.length > 0 && b3.childNodes.length > 0){
 
@@ -59,10 +64,10 @@ function checkWinCondtion(){
         let b3Child = b3.childNodes[0].className;
         
         if(b1Child == 'x' && b2Child == 'x' && b3Child == 'x'){
-            statusPartida = 1;
+            statusPartida = StatusPartida.FINALIZADA;
             declareWinner('x');
         }else if(b1Child == 'o' && b2Child == 'o' && b3Child == 'o'){
-            statusPartida = 1;
+            statusPartida = StatusPartida.FINALIZADA;
             declareWinner('o');
         }
     }
@@ -73,10 +78,10 @@ function checkWinCondtion(){
         let b6Child = b6.childNodes[0].className;
         
         if(b4Child == 'x' && b5Child == 'x' && b6Child == 'x'){
-            statusPartida = 1;
+            statusPartida = StatusPartida.FINALIZADA;
             declareWinner('x');
         }else if(b4Child == 'o' && b5Child == 'o' && b6Child == 'o'){
-            statusPartida = 1;
+            statusPartida = StatusPartida.FINALIZADA;
             declareWinner('o');
         }
     }
@@ -87,10 +92,10 @@ function checkWinCondtion(){
         let b9Child = b9.childNodes[0].className;
         
         if(b7Child == 'x' && b8Child == 'x' && b9Child == 'x'){
-            statusPartida = 1;
+            statusPartida = StatusPartida.FINALIZADA;
             declareWinner('x');
         }else if(b7Child == 'o' && b8Child == 'o' && b9Child == 'o'){
-            statusPartida = 1;
+            statusPartida = StatusPartida.FINALIZADA;
             declareWinner('o');
         }
     }
@@ -101,10 +106,10 @@ function checkWinCondtion(){
         let b7Child = b7.childNodes[0].className;
         
         if(b1Child == 'x' && b4Child == 'x' && b7Child == 'x'){
-            statusPartida = 1;
+            statusPartida = StatusPartida.FINALIZADA;
             declareWinner('x');
         }else if(b1Child == 'o' && b4Child == 'o' && b7Child == 'o'){
-            statusPartida = 1;
+            statusPartida = StatusPartida.FINALIZADA;
             declareWinner('o');
         }
     }
@@ -115,10 +120,10 @@ function checkWinCondtion(){
         let b8Child = b8.childNodes[0].className;
         
         if(b2Child == 'x' && b5Child == 'x' && b8Child == 'x'){
-            statusPartida = 1;
+            statusPartida = StatusPartida.FINALIZADA;
             declareWinner('x');
         }else if(b2Child == 'o' && b5Child == 'o' && b8Child == 'o'){
-            statusPartida = 1;
+            statusPartida = StatusPartida.FINALIZADA;
             declareWinner('o');
         }
     }
@@ -129,10 +134,10 @@ function checkWinCondtion(){
         let b9Child = b9.childNodes[0].className;
         
         if(b3Child == 'x' && b6Child == 'x' && b9Child == 'x'){
-            statusPartida = 1;
+            statusPartida = StatusPartida.FINALIZADA;
             declareWinner('x');
         }else if(b3Child == 'o' && b6Child == 'o' && b9Child == 'o'){
-            statusPartida = 1;
+            statusPartida = StatusPartida.FINALIZADA;
             declareWinner('o');
         }
     }
@@ -143,10 +148,10 @@ function checkWinCondtion(){
         let b9Child = b9.childNodes[0].className;
         
         if(b1Child == 'x' && b5Child == 'x' && b9Child == 'x'){
-            statusPartida = 1;
+            statusPartida = StatusPartida.FINALIZADA;
             declareWinner('x');
         }else if(b1Child == 'o' && b5Child == 'o' && b9Child == 'o'){
-            statusPartida = 1;
+            statusPartida = StatusPartida.FINALIZADA;
             declareWinner('o');
         }
     }
@@ -157,10 +162,10 @@ function checkWinCondtion(){
         let b7Child = b7.childNodes[0].className;
         
         if(b3Child == 'x' && b5Child == 'x' && b7Child == 'x'){
-            statusPartida = 1;
+            statusPartida = StatusPartida.FINALIZADA;
             declareWinner('x');
         }else if(b3Child == 'o' && b5Child == 'o' && b7Child == 'o'){
-            statusPartida = 1;
+            statusPartida = StatusPartida.FINALIZADA;
             declareWinner('o');
         }
     }
@@ -171,7 +176,7 @@ function checkWinCondtion(){
         if(boxes[i].childNodes[0] != undefined){
             counter++;
         }
-        if(counter == 9 && statusPartida == 0){
+        if(counter == 9 && statusPartida == StatusPartida.JOGANDO){
             declareWinner('Deu Velha!');
         }
     }

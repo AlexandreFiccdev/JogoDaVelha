@@ -6,6 +6,7 @@ let messageContainer = document.querySelector("#message");
 let messageText = document.querySelector("#message p");
 let secondPlayer;
 
+let playCounter = 0;
 let playerXTurnsPlayed = 0;
 let playerOTurnsPlayed = 0;
 
@@ -94,21 +95,18 @@ function checkWinner(playA, playB, playC) {
 }
 
 function declareWinner(winner){
-    let scoreboardX = document.querySelector("#scoreboard-1");
-    let scoreboardY = document.querySelector("#scoreboard-2");
-    let msg = '';
+    let winnerScoreboard = null;
+    let msg = 'Deu Velha!';
 
-    if(winner == 'x'){
-        scoreboardX.textContent = parseInt(scoreboardX.textContent) + 1;
+    if(winner == Player.X) {
+        winnerScoreboard = document.querySelector("#scoreboard-1");
         msg = "Jogador 1 venceu!";
-    }else if(winner == 'o'){
-        scoreboardY.textContent = parseInt(scoreboardY.textContent) + 1;
+    } else if(winner == Player.O) {
+        winnerScoreboard = document.querySelector("#scoreboard-2");
         msg = "Jogador 2 venceu!";
-    }else{
-        msg = "Deu Velha!";
     }
 
-
+    if (winnerScoreboard) winnerScoreboard.textContent = parseInt(winnerScoreboard.textContent) + 1;
     messageText.innerHTML = msg;
     messageContainer.classList.remove("hide");
 
@@ -116,15 +114,13 @@ function declareWinner(winner){
         messageContainer.classList.add("hide");
     },3000);    
 
+    playCounter = 0;
     playerXTurnsPlayed = 0;
     playerOTurnsPlayed = 0;
 
-    let boxesToRemove = document.querySelectorAll(".box div");
-
-    for(let i = 0; i < boxesToRemove.length; i++){
-        boxesToRemove[i].parentNode.removeChild(boxesToRemove[i]);
-    }
-
-
+    boxes.forEach(box => {
+        box.childNodes.forEach(checkNode => {
+            box.removeChild(checkNode);
+        })
+    });
 }
-

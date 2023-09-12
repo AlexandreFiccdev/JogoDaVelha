@@ -6,43 +6,40 @@ let messageContainer = document.querySelector("#message");
 let messageText = document.querySelector("#message p");
 let secondPlayer;
 
-let player1 = 0;
-let player2 = 0;
+let playerXTurnsPlayed = 0;
+let playerOTurnsPlayed = 0;
 
 const StatusPartida = {
     JOGANDO: 0,
     FINALIZADA: 1,
 };
 
-for(let i = 0; i < boxes.length; i++){
+const Player = {
+    X: 'x',
+    O: 'o',
+};
+
+for(let i = 0; i < boxes.length; i++) {
     boxes[i].addEventListener("click", function(){
-        let el = checkEl(player1, player2);
-
-
-        if(this.childNodes.length == 0){
-            let cloneEl = el.cloneNode(true);
-
-            this.appendChild(cloneEl);
-    
-            if(player1 == player2){
-                player1++;
-            }else{
-                player2++
-            }
-
+        const player = getAndIncrementPlayerTurn();
+        const playerElement = player == Player.X ? x : o;
+        const isBlockEmpty = this.childNodes.length == 0;
+        if(isBlockEmpty) {
+            const playerElementClone = playerElement.cloneNode(true);
+            this.appendChild(playerElementClone);
             checkWinCondtion();
         }
-
     });
 }
 
-function checkEl(player1, player2){
-    if(player1 == player2){
-        el = x;
-    }else{
-        el = o;
+function getAndIncrementPlayerTurn(){
+    if(playerXTurnsPlayed == playerOTurnsPlayed) {
+        playerXTurnsPlayed++;
+        return Player.X;
+    } else {
+        playerOTurnsPlayed++;
+        return Player.O;
     }
-    return el;
 }
 
 function checkWinCondtion(){
@@ -119,8 +116,8 @@ function declareWinner(winner){
         messageContainer.classList.add("hide");
     },3000);    
 
-    player1 = 0;
-    player2 = 0;
+    playerXTurnsPlayed = 0;
+    playerOTurnsPlayed = 0;
 
     let boxesToRemove = document.querySelectorAll(".box div");
 

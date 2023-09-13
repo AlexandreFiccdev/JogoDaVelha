@@ -69,7 +69,7 @@ function checkWinCondtion(){
     lookForWinner(b1, b5, b9);
     lookForWinner(b3, b5, b7);
     
-    playCounter++;
+    playCounter = playerXTurnsPlayed + playerOTurnsPlayed;
     const isTie = playCounter == 9 && statusPartida == StatusPartida.JOGANDO;
     if(isTie) declareWinner();
 }
